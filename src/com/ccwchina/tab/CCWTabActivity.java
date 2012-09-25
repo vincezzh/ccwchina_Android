@@ -9,12 +9,15 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
 
 import com.ccwchina.R;
+import com.ccwchina.calendar.CCWCalendarActivity;
+import com.ccwchina.information.CCWInfoActivity;
+import com.ccwchina.map.CCWMapActivity;
 /**
  * 防新浪微博底部工具栏的TabActivity。Android开发技术交流群86686524欢迎大家交流学习
  * @author 飞雪无情
  * @since 2011-3-8
  */
-public class MainTabActivity extends TabActivity implements OnCheckedChangeListener{
+public class CCWTabActivity extends TabActivity implements OnCheckedChangeListener{
 	private RadioGroup mainTab;
 	private TabHost mTabHost;
 	
@@ -22,14 +25,10 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
 	private Intent mHomeIntent;
 	private Intent mNewsIntent;
 	private Intent mInfoIntent;
-	private Intent mSearchIntent;
-	private Intent mMoreIntent;
 	
 	private final static String TAB_TAG_HOME="tab_tag_home";
 	private final static String TAB_TAG_NEWS="tab_tag_news";
 	private final static String TAB_TAG_INFO="tab_tag_info";
-	private final static String TAB_TAG_SEARCH="tab_tag_search";
-	private final static String TAB_TAG_MORE="tab_tag_more";
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +44,9 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
      * 准备tab的内容Intent
      */
 	private void prepareIntent() {
-		mHomeIntent=new Intent(this, HomeActivity.class);
-		mNewsIntent=new Intent(this, NewsActivity.class);
-		mInfoIntent=new Intent(this, MyInfoActivity.class);
+		mHomeIntent=new Intent(this, CCWCalendarActivity.class);
+		mInfoIntent=new Intent(this, CCWInfoActivity.class);
+		mNewsIntent=new Intent(this, CCWMapActivity.class);
 	}
 	/**
 	 * 
@@ -56,8 +55,8 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
 		this.mTabHost=getTabHost();
 		TabHost localTabHost=this.mTabHost;
 		localTabHost.addTab(buildTabSpec(TAB_TAG_HOME, R.string.main_home, R.drawable.icon_1_n, mHomeIntent));
-		localTabHost.addTab(buildTabSpec(TAB_TAG_NEWS, R.string.main_news, R.drawable.icon_2_n, mNewsIntent));
-		localTabHost.addTab(buildTabSpec(TAB_TAG_INFO, R.string.main_my_info, R.drawable.icon_3_n, mInfoIntent));
+		localTabHost.addTab(buildTabSpec(TAB_TAG_INFO, R.string.main_my_info, R.drawable.icon_2_n, mInfoIntent));
+		localTabHost.addTab(buildTabSpec(TAB_TAG_NEWS, R.string.main_news, R.drawable.icon_3_n, mNewsIntent));
 	}
 	/**
 	 * 构建TabHost的Tab页
@@ -74,15 +73,15 @@ public class MainTabActivity extends TabActivity implements OnCheckedChangeListe
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch(checkedId){
-		case R.id.radio_button0:
-			this.mTabHost.setCurrentTabByTag(TAB_TAG_HOME);
-			break;
-		case R.id.radio_button1:
-			this.mTabHost.setCurrentTabByTag(TAB_TAG_NEWS);
-			break;
-		case R.id.radio_button2:
-			this.mTabHost.setCurrentTabByTag(TAB_TAG_INFO);
-			break;
+			case R.id.radio_button0:
+				this.mTabHost.setCurrentTabByTag(TAB_TAG_HOME);
+				break;
+			case R.id.radio_button1:
+				this.mTabHost.setCurrentTabByTag(TAB_TAG_INFO);
+				break;
+			case R.id.radio_button2:
+				this.mTabHost.setCurrentTabByTag(TAB_TAG_NEWS);
+				break;
 		}
 	}
     

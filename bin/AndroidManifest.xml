@@ -6,6 +6,8 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="15" />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -21,22 +23,24 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".tab.MainTabActivity"
+        <activity android:name=".tab.CCWTabActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".calendar.CCWCalendarActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity
+            android:name=".map.CCWMapActivity"
+            android:theme="@android:style/Theme.NoTitleBar"/>
         <activity 
-        	android:name=".tab.HomeActivity"
+        	android:name=".information.CCWInfoActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
-         <activity 
-        	android:name=".tab.NewsActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         <activity 
-        	android:name=".tab.MyInfoActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
+         
+         <uses-library android:name="com.google.android.maps"/>
     </application>
 
 </manifest>

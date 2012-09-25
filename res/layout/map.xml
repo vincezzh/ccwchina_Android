@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.google.android.maps.MapView
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/mapview"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:clickable="true"
+	    android:apiKey="03Rr-zoQZludOeCh5TLefAF1ntLDkzXTnIvb6Cw"
+	/>
+    <!-- Home machine: 03Rr-zoQZlueCy8xcskg_eOpSa_O47PEv1Vnb6Q -->
+    <!-- Office machine: 03Rr-zoQZludOeCh5TLefAF1ntLDkzXTnIvb6Cw -->
+
+</RelativeLayout>

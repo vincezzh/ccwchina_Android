@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/com/ccwchina/LoginActivity.java=UTF-8
-encoding//src/com/ccwchina/tab/HomeActivity.java=UTF-8
-encoding//src/com/ccwchina/tab/MainTabActivity.java=UTF-8
-encoding//src/com/ccwchina/tab/MyInfoActivity.java=UTF-8
-encoding//src/com/ccwchina/tab/NewsActivity.java=UTF-8
+encoding//src/com/ccwchina/calendar/CCWCalendarActivity.java=UTF-8
+encoding//src/com/ccwchina/calendar/DateWidgetDayCell.java=UTF-8
+encoding//src/com/ccwchina/calendar/DateWidgetDayHeader.java=UTF-8
+encoding//src/com/ccwchina/calendar/DayStyle.java=UTF-8
+encoding//src/com/ccwchina/information/CCWInfoActivity.java=UTF-8
+encoding//src/com/ccwchina/tab/CCWTabActivity.java=UTF-8

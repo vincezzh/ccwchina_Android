@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.ccwchina.tab.MainTabActivity;
+import com.ccwchina.tab.CCWTabActivity;
 
 public class LoginActivity extends Activity {
 
@@ -21,7 +21,7 @@ public class LoginActivity extends Activity {
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(LoginActivity.this,
-						MainTabActivity.class);
+						CCWTabActivity.class);
 				startActivity(intent);
 			}
 		});
