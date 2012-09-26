@@ -9,9 +9,9 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:clickable="true"
-	    android:apiKey="03Rr-zoQZlueCy8xcskg_eOpSa_O47PEv1Vnb6Q"
+	    android:apiKey="03Rr-zoQZludOeCh5TLefAF1ntLDkzXTnIvb6Cw"
 	/>
-    <!-- Home machine: 03Rr-zoQZlueCy8xcskg_eOpSa_O47PEv1Vnb6Q -->
-    <!-- Office machine: 03Rr-zoQZludOeCh5TLefAF1ntLDkzXTnIvb6Cw -->
+    <!-- Home machine: 		03Rr-zoQZlueCy8xcskg_eOpSa_O47PEv1Vnb6Q -->
+    <!-- Office machine: 	03Rr-zoQZludOeCh5TLefAF1ntLDkzXTnIvb6Cw -->
 
 </RelativeLayout>

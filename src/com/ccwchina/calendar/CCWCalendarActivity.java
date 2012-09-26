@@ -1,12 +1,19 @@
 package com.ccwchina.calendar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,20 +27,6 @@ import android.widget.TextView;
 
 import com.ccwchina.R;
 
-/**
- * Android实现日历控件
- * @Description: Android实现日历控件
-
- * @File: MainActivity.java
-
- * @Package com.calendar.demo
-
- * @Author Hanyonglu
-
- * @Date 2012-6-21 上午11:42:32
-
- * @Version V1.0
- */
 public class CCWCalendarActivity extends Activity{
 	// 生成日历，外层容器
 	private LinearLayout layContent = null;
@@ -62,9 +55,11 @@ public class CCWCalendarActivity extends Activity{
 	LinearLayout arrange_layout = null;
 
 	// 数据源
-	ArrayList<String> Calendar_Source = null;
+//	ArrayList<String> Calendar_Source = null;
+	Map<String, List<CourseCalendar>> Calendar_Source = null;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Hashtable<Integer, Integer> calendar_Hashtable = new Hashtable<Integer, Integer>();
-	Boolean[] flag = null;
+//	Boolean[] flag = null;
 	Calendar startDate = null;
 	Calendar endDate = null;
 	int dayvalue = -1;
@@ -79,12 +74,13 @@ public class CCWCalendarActivity extends Activity{
 	public static int common_Reminder = 0;
 	public static int Calendar_WeekFontColor = 0;
 
-	String UserName = "";
+	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private Handler handler;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		// 获得屏幕宽和高，并計算出屏幕寬度分七等份的大小
 		WindowManager windowManager = getWindowManager();
 		Display display = windowManager.getDefaultDisplay();
@@ -105,6 +101,10 @@ public class CCWCalendarActivity extends Activity{
 		btn_pre_month.setOnClickListener(new Pre_MonthOnClickListener());
 		btn_next_month.setOnClickListener(new Next_MonthOnClickListener());
 
+		startDate = GetStartDate();
+		calToday = GetTodayDate();
+		endDate = GetEndDate(startDate);
+		
 		// 计算本月日历中的第一天(一般是上月的某天)，并更新日历
 		calStartDate = getCalendarStartDate();
 		mainLayout.addView(generateCalendarMain());
@@ -126,10 +126,6 @@ public class CCWCalendarActivity extends Activity{
 		arrange_text.setTextSize(18);
 		arrange_layout.addView(arrange_text);
 
-		startDate = GetStartDate();
-		calToday = GetTodayDate();
-
-		endDate = GetEndDate(startDate);
 		view.addView(arrange_layout, Param1);
 		mainLayout.addView(view);
 
@@ -304,6 +300,9 @@ public class CCWCalendarActivity extends Activity{
 
 	// 更新日历
 	private DateWidgetDayCell updateCalendar() {
+		// Fetch CourseCalendars from CCW website
+		getCCWCalendar();
+		
 		DateWidgetDayCell daySelected = null;
 		boolean bSelected = false;
 		final boolean bIsSelection = (calSelected.getTimeInMillis() != 0);
@@ -352,12 +351,15 @@ public class CCWCalendarActivity extends Activity{
 			// 是否有记录
 			boolean hasRecord = false;
 			
-			if (flag != null && flag[i] == true && calendar_Hashtable != null
-					&& calendar_Hashtable.containsKey(i)) {
-				// hasRecord = flag[i];
-				hasRecord = Calendar_Source.get(calendar_Hashtable.get(i))
-						.contains(UserName);
-			}
+//			if (calendar_Hashtable != null && calendar_Hashtable.containsKey(i)) {
+//				hasRecord = Calendar_Source.get(calendar_Hashtable.get(i)).contains(UserName);
+				if(Calendar_Source.get(sdf.format(calCalendar.getTime())) != null && Calendar_Source.get(sdf.format(calCalendar.getTime())).size() != 0)
+					hasRecord = true;
+				else
+					hasRecord = false;
+//			}
+			
+			
 
 			if (bSelected)
 				daySelected = dayCell;
@@ -375,8 +377,8 @@ public class CCWCalendarActivity extends Activity{
 
 	// 更新日历标题上显示的年月
 	private void UpdateCurrentMonthDisplay() {
-		String date = calStartDate.get(Calendar.YEAR) + "年"
-				+ (calStartDate.get(Calendar.MONTH) + 1) + "月";
+		String date = calStartDate.get(Calendar.YEAR) + "-"
+				+ (calStartDate.get(Calendar.MONTH) + 1);
 		Top_Date.setText(date);
 	}
 
@@ -472,10 +474,15 @@ public class CCWCalendarActivity extends Activity{
 			
 			if (calendar_Hashtable != null
 					&& calendar_Hashtable.containsKey(day)) {
-				arrange_text.setText(Calendar_Source.get(calendar_Hashtable
-						.get(day)));
+				String currentday = sdf.format(calSelected.getTime());
+				List<CourseCalendar> ccList = Calendar_Source.get(currentday);
+				if(ccList == null || ccList.size() == 0) {
+					arrange_text.setText("No classes");
+				}else {
+					arrange_text.setText("Classes " + ccList.size());
+				}
 			} else {
-				arrange_text.setText("暂无数据记录");
+				arrange_text.setText("No classes");
 			}
 			
 			item.setSelected(true);
@@ -520,5 +527,34 @@ public class CCWCalendarActivity extends Activity{
 		endDate = (Calendar) startDate.clone();
 		endDate.add(Calendar.DAY_OF_MONTH, 41);
 		return endDate;
+	}
+	
+	// CCW Logic
+	private void getCCWCalendar() {
+		handler = new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+	            switch(msg.what){
+	            case 1:
+	                System.out.println(Calendar_Source.size());
+	                break;
+	            }
+			}
+		};
+		
+		executorService.submit(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Calendar_Source = CourseCalendarProcessor.getAMonthCourseCalendars(startDate, endDate);
+	                
+	                Message msg = new Message();
+	                msg.what = 1;
+	                handler.sendMessage(msg);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

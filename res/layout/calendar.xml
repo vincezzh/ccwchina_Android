@@ -17,26 +17,26 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal|center"
-            android:textColor="#424139"
+            android:textColor="#999999"
             android:textSize="19sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_pre_month"
-            android:layout_width="wrap_content"
+            android:layout_width="40dip"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/previous_month" />
 
         <Button
             android:id="@+id/btn_next_month"
-            android:layout_width="wrap_content"
+            android:layout_width="40dip"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/next_month" />
     </RelativeLayout>
 

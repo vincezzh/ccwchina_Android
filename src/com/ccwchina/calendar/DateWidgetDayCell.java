@@ -15,20 +15,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout.LayoutParams;
 
-/**
- * 日历控件单元格绘制类
- * @Description: 日历控件单元格绘制类
-
- * @FileName: DateWidgetDayCell.java 
-
- * @Package com.calendar.demo 
-
- * @Author Hanyonglu 
-
- * @Date 2012-3-17 下午03:19:34 
-
- * @Version V1.0
- */
 public class DateWidgetDayCell extends View {
 	// 字体大小
 	private static final int fTextSize = 28;

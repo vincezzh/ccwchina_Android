@@ -7,20 +7,6 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.LinearLayout.LayoutParams;
 
-/**
- * 日历控件头部绘制类
- * @Descriptio.n: 日历控件头部绘制类
-
- * @FileName: DateWidgetDayHeader.java 
-
- * @Package com.calendar.demo 
-
- * @Author Hanyonglu
-
- * @Date 2012-3-19 下午03:28:39 
-
- * @Version V1.0
- */
 public class DateWidgetDayHeader extends View {
 	// 字体大小
 	private final static int fTextSize = 22;
