@@ -26,8 +26,7 @@ public class CourseCalendarProcessor {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String fromDateString = sdf.format(fromDate.getTime());
 		String toDateString = sdf.format(toDate.getTime());
-		System.out.println("fromDateString=" + fromDateString + " & toDateString=" + toDateString);
-		URL url = new URL("http://www.chinesecookingworkshop.com/ccwcalendar.xml");
+		URL url = new URL("http://www.chinesecookingworkshop.com/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString);
 		InputStream inputStream = url.openStream();
 		ByteArrayBuffer baf = new ByteArrayBuffer(50);
 		int current = 0;

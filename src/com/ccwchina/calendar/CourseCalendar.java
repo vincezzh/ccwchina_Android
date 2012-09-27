@@ -1,9 +1,11 @@
 package com.ccwchina.calendar;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class CourseCalendar {
+public class CourseCalendar implements Serializable {
+	private static final long serialVersionUID = -137279859454834921L;
 	private String courseCalendarId;
 	private Date classDate;
 	private Integer classTimeId;

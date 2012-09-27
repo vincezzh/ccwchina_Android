@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ccwchina.R;
+import com.ccwchina.tab.CCWTabActivity;
 
 public class CCWCalendarActivity extends Activity{
 	// 生成日历，外层容器
@@ -76,6 +78,7 @@ public class CCWCalendarActivity extends Activity{
 
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
 	private Handler handler;
+	private boolean refreshCalendar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,11 +123,11 @@ public class CCWCalendarActivity extends Activity{
 		ScrollView view = new ScrollView(this);
 		arrange_layout = createLayout(LinearLayout.VERTICAL);
 		arrange_layout.setPadding(5, 2, 0, 0);
-		arrange_text = new TextView(this);
 		mainLayout.setBackgroundColor(Color.WHITE);
+		arrange_text = new TextView(this);
 		arrange_text.setTextColor(Color.BLACK);
 		arrange_text.setTextSize(18);
-		arrange_layout.addView(arrange_text);
+//		arrange_layout.addView(arrange_text);
 
 		view.addView(arrange_layout, Param1);
 		mainLayout.addView(view);
@@ -300,9 +303,10 @@ public class CCWCalendarActivity extends Activity{
 
 	// 更新日历
 	private DateWidgetDayCell updateCalendar() {
-		// Fetch CourseCalendars from CCW website
-		getCCWCalendar();
-		
+		if(!refreshCalendar && Calendar_Source == null) {
+			// Fetch CourseCalendars from CCW website
+			getCCWCalendar();
+		}
 		DateWidgetDayCell daySelected = null;
 		boolean bSelected = false;
 		final boolean bIsSelection = (calSelected.getTimeInMillis() != 0);
@@ -351,15 +355,14 @@ public class CCWCalendarActivity extends Activity{
 			// 是否有记录
 			boolean hasRecord = false;
 			
-//			if (calendar_Hashtable != null && calendar_Hashtable.containsKey(i)) {
-//				hasRecord = Calendar_Source.get(calendar_Hashtable.get(i)).contains(UserName);
+			if(Calendar_Source != null) {
 				if(Calendar_Source.get(sdf.format(calCalendar.getTime())) != null && Calendar_Source.get(sdf.format(calCalendar.getTime())).size() != 0)
 					hasRecord = true;
 				else
 					hasRecord = false;
-//			}
-			
-			
+			}else {
+				hasRecord = false;
+			}
 
 			if (bSelected)
 				daySelected = dayCell;
@@ -371,6 +374,7 @@ public class CCWCalendarActivity extends Activity{
 		}
 		
 		layContent.invalidate();
+		refreshCalendar = false;
 		
 		return daySelected;
 	}
@@ -422,6 +426,7 @@ public class CCWCalendarActivity extends Activity{
 				}
 			}.start();
 
+			Calendar_Source = null;
 			updateCalendar();
 		}
 
@@ -462,6 +467,7 @@ public class CCWCalendarActivity extends Activity{
 				}
 			}.start();
 
+			Calendar_Source = null;
 			updateCalendar();
 		}
 	}
@@ -470,25 +476,52 @@ public class CCWCalendarActivity extends Activity{
 	private DateWidgetDayCell.OnItemClick mOnDayCellClick = new DateWidgetDayCell.OnItemClick() {
 		public void OnClick(DateWidgetDayCell item) {
 			calSelected.setTimeInMillis(item.getDate().getTimeInMillis());
-			int day = GetNumFromDate(calSelected, startDate);
-			
-			if (calendar_Hashtable != null
-					&& calendar_Hashtable.containsKey(day)) {
-				String currentday = sdf.format(calSelected.getTime());
-				List<CourseCalendar> ccList = Calendar_Source.get(currentday);
-				if(ccList == null || ccList.size() == 0) {
-					arrange_text.setText("No classes");
-				}else {
-					arrange_text.setText("Classes " + ccList.size());
-				}
-			} else {
-				arrange_text.setText("No classes");
-			}
+//			int day = GetNumFromDate(calSelected, startDate);
+			setupClassesBlock();
 			
 			item.setSelected(true);
 			updateCalendar();
 		}
 	};
+	
+	private void setupClassesBlock() {
+		if (Calendar_Source != null) {
+			String currentday = sdf.format(calSelected.getTime());
+			List<CourseCalendar> ccList = Calendar_Source.get(currentday);
+			if(ccList == null || ccList.size() == 0) {
+				arrange_layout.addView(arrange_text);
+				arrange_text.setText("");
+			}else {
+				for(final CourseCalendar cc : ccList) {
+					TextView tv = new TextView(this);
+					tv.setTextColor(Color.parseColor(cc.getFontColor()));
+					tv.setBackgroundColor(Color.parseColor(cc.getBackgroundColor()));
+					tv.setTextSize(18);
+					tv.setText("[" + cc.getClassTimeName() + "] " + cc.getCourseBranchTypeName());
+					arrange_layout.addView(tv);
+					tv.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							Intent intent = new Intent(CCWCalendarActivity.this, CCWTabActivity.class);
+							Bundle bundle = new Bundle();
+							bundle.putSerializable("_CourseCalendar", cc);
+					        intent.putExtras(bundle);
+							startActivity(intent);
+						}
+					});
+				}
+			}
+		} else {
+			arrange_layout.addView(arrange_text);
+			arrange_text.setText("");
+		}
+	}
+	
+	class CourseCalendarTextViewListener implements OnClickListener {  
+        @Override 
+        public void onClick(View arg0) {  
+
+        }  
+    }
 
 	public Calendar GetTodayDate() {
 		Calendar cal_Today = Calendar.getInstance();
@@ -536,7 +569,8 @@ public class CCWCalendarActivity extends Activity{
 			public void handleMessage(Message msg) {
 	            switch(msg.what){
 	            case 1:
-	                System.out.println(Calendar_Source.size());
+	            	refreshCalendar = true;
+	            	updateCalendar();
 	                break;
 	            }
 			}

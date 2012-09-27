@@ -35,7 +35,7 @@
     <color name="unPresentMonth_FontColor">#8C8A8C</color>
     <color name="isPresentMonth_FontColor">#000000</color>
     <color name="isToday_BgColor">#EBDCC1</color>
-    <color name="specialReminder">#FF0000</color>
+    <color name="specialReminder">#A4C41B</color>
     <color name="commonReminder">#BDBAB5</color>
     <color name="gray">#808080</color>
 </resources>

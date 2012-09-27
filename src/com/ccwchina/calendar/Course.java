@@ -1,6 +1,9 @@
 package com.ccwchina.calendar;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
+	private static final long serialVersionUID = 3348367329867501910L;
 	private String courseId;
 	private String courseNameEn;
 	private String pictureOne;
