@@ -27,7 +27,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ccwchina.R;
-import com.ccwchina.tab.CCWTabActivity;
 
 public class CCWCalendarActivity extends Activity{
 	// 生成日历，外层容器
@@ -501,7 +500,7 @@ public class CCWCalendarActivity extends Activity{
 					arrange_layout.addView(tv);
 					tv.setOnClickListener(new OnClickListener() {
 						public void onClick(View v) {
-							Intent intent = new Intent(CCWCalendarActivity.this, CCWTabActivity.class);
+							Intent intent = new Intent(CCWCalendarActivity.this.getParent(), OrderActivity.class);
 							Bundle bundle = new Bundle();
 							bundle.putSerializable("_CourseCalendar", cc);
 					        intent.putExtras(bundle);

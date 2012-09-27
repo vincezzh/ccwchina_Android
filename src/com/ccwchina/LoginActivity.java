@@ -25,6 +25,16 @@ public class LoginActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
+		User user = new User();
+		user.setUsername("vincezzh");
+		user.setEmail("vincezzh@gmail.com");
+		user.setFirstname("Vince");
+		user.setLastname("Zhang");
+		user.setTitleId(4);
+		user.setTitleName("Miss");
+		user.setCellphone("+14168397036");
+		((CCWApplication) this.getApplication()).setUser(user);
 	}
 
 	@Override

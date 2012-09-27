@@ -18,6 +18,8 @@ import com.ccwchina.map.CCWMapActivity;
  * @since 2011-3-8
  */
 public class CCWTabActivity extends TabActivity implements OnCheckedChangeListener{
+	public static CCWTabActivity ccwTabActivityActivityInstance;
+	
 	private RadioGroup mainTab;
 	private TabHost mTabHost;
 	
@@ -34,8 +36,9 @@ public class CCWTabActivity extends TabActivity implements OnCheckedChangeListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ccwTabActivityActivityInstance = this;
         setContentView(R.layout.tab);
-        mainTab=(RadioGroup)findViewById(R.id.main_tab);
+        mainTab = (RadioGroup)findViewById(R.id.main_tab);
         mainTab.setOnCheckedChangeListener(this);
         prepareIntent();
         setupIntent();
