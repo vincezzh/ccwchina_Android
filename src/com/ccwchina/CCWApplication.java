@@ -12,5 +12,4 @@ public class CCWApplication extends Application {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 }

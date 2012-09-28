@@ -20,14 +20,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class CourseCalendarProcessor {
-	public static Map<String, List<CourseCalendar>> getAMonthCourseCalendars(Calendar fromDate, Calendar toDate) throws Exception {
+	public static Map<String, List<CourseCalendar>> getAMonthCourseCalendars(String websiteContext, Calendar fromDate, Calendar toDate) throws Exception {
 		Map<String, List<CourseCalendar>> dataSource = new HashMap<String, List<CourseCalendar>>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String fromDateString = sdf.format(fromDate.getTime());
 		String toDateString = sdf.format(toDate.getTime());
-//		URL url = new URL("http://www.chinesecookingworkshop.com/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString);
-		URL url = new URL("http://www.chinesecookingworkshop.com/ccwcalendar.xml");
+//		URL url = new URL(websiteContext + "/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString);
+		URL url = new URL(websiteContext + "/ccwcalendar.xml");
 		InputStream inputStream = url.openStream();
 		ByteArrayBuffer baf = new ByteArrayBuffer(50);
 		int current = 0;

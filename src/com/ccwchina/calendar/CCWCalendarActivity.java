@@ -78,6 +78,7 @@ public class CCWCalendarActivity extends Activity{
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
 	private Handler handler;
 	private boolean refreshCalendar;
+	private String websiteContext;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -579,7 +580,7 @@ public class CCWCalendarActivity extends Activity{
 			@Override
 			public void run() {
 				try {
-					Calendar_Source = CourseCalendarProcessor.getAMonthCourseCalendars(startDate, endDate);
+					Calendar_Source = CourseCalendarProcessor.getAMonthCourseCalendars(websiteContext, startDate, endDate);
 	                
 	                Message msg = new Message();
 	                msg.what = 1;
