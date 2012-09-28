@@ -1,4 +1,4 @@
-package com.ccwchina;
+package com.ccwchina.bean;
 
 public class User {
 	private String username;

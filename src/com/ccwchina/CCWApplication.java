@@ -1,5 +1,7 @@
 package com.ccwchina;
 
+import com.ccwchina.bean.User;
+
 import android.app.Application;
 
 public class CCWApplication extends Application {

@@ -1,4 +1,4 @@
-package com.ccwchina.calendar;
+package com.ccwchina.bean;
 
 import java.io.Serializable;
 

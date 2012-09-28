@@ -27,6 +27,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ccwchina.R;
+import com.ccwchina.bean.CourseCalendar;
 
 public class CCWCalendarActivity extends Activity{
 	// 生成日历，外层容器

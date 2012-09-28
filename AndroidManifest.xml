@@ -25,12 +25,29 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".tab.CCWTabActivity"
-                  android:label="@string/app_name" />
+        <activity 
+        	android:name=".RetrievePasswordActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
+        
+        <activity 
+        	android:name=".SignUpActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
+        
+        <activity 
+            android:name=".tab.CCWTabActivity"
+            android:label="@string/app_name" />
         
         <activity
             android:name=".calendar.CCWCalendarActivity"
             android:theme="@android:style/Theme.NoTitleBar"/>
+        
+        <activity 
+        	android:name=".calendar.OrderActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
+        
+        <activity 
+        	android:name=".calendar.CourseDetailActivity"
+        	android:theme="@android:style/Theme.NoTitleBar"/>
         
         <activity
             android:name=".map.CCWMapActivity"
@@ -40,10 +57,6 @@
         	android:name=".information.CCWInfoActivity"
         	android:theme="@android:style/Theme.NoTitleBar"/>
         
-        <activity 
-        	android:name=".calendar.OrderActivity"
-        	android:theme="@android:style/Theme.NoTitleBar"/>
-         
          <uses-library android:name="com.google.android.maps"/>
     </application>
 

@@ -28,7 +28,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.ccwchina.bean.User;
 import com.ccwchina.common.CCWChinaConst;
 import com.ccwchina.tab.CCWTabActivity;
 
@@ -57,12 +59,36 @@ public class LoginActivity extends Activity {
 				signIn();
 			}
 		});
+		
+		Button signUp = (Button)findViewById(R.id.signUp);
+		signUp.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				signUp();
+			}
+		});
+		
+		TextView retrievePassword = (TextView)findViewById(R.id.retrievePassword);
+		retrievePassword.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				retrievePassword();
+			}
+		});
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
+	}
+	
+	private void signUp() {
+		Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+		startActivity(intent);
+	}
+	
+	private void retrievePassword() {
+		Intent intent = new Intent(LoginActivity.this, RetrievePasswordActivity.class);
+		startActivity(intent);
 	}
 	
 	private void signIn() {

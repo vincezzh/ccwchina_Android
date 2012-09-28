@@ -18,6 +18,7 @@ import org.w3c.dom.NodeList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,7 +34,8 @@ import android.widget.TextView;
 
 import com.ccwchina.CCWApplication;
 import com.ccwchina.R;
-import com.ccwchina.User;
+import com.ccwchina.bean.CourseCalendar;
+import com.ccwchina.bean.User;
 import com.ccwchina.common.CCWChinaConst;
 
 public class OrderActivity extends Activity {
@@ -91,6 +93,18 @@ public class OrderActivity extends Activity {
 					break;
 			}
 			course.setText(cc.getCourseList().get(i-1).getCourseNameEn());
+			final String courseName = cc.getCourseList().get(i-1).getCourseNameEn();
+			final String coursePicturePath = cc.getCourseList().get(i-1).getPictureOne();
+			course.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					Intent intent = new Intent(OrderActivity.this, CourseDetailActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putString("_courseName", courseName);
+					bundle.putString("_coursePicturePath", coursePicturePath);
+			        intent.putExtras(bundle);
+					startActivity(intent);
+				}
+			});
 		}
 		RadioButton title = null;
 		switch(user.getTitleId()) {

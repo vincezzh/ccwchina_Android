@@ -19,6 +19,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.ccwchina.bean.Course;
+import com.ccwchina.bean.CourseCalendar;
+
 public class CourseCalendarProcessor {
 	public static Map<String, List<CourseCalendar>> getAMonthCourseCalendars(String websiteContext, Calendar fromDate, Calendar toDate) throws Exception {
 		Map<String, List<CourseCalendar>> dataSource = new HashMap<String, List<CourseCalendar>>();
