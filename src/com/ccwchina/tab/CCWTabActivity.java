@@ -12,11 +12,7 @@ import com.ccwchina.R;
 import com.ccwchina.calendar.CCWCalendarActivity;
 import com.ccwchina.information.CCWInfoActivity;
 import com.ccwchina.map.CCWMapActivity;
-/**
- * 防新浪微博底部工具栏的TabActivity。Android开发技术交流群86686524欢迎大家交流学习
- * @author 飞雪无情
- * @since 2011-3-8
- */
+
 public class CCWTabActivity extends TabActivity implements OnCheckedChangeListener{
 	public static CCWTabActivity ccwTabActivityActivityInstance;
 	
@@ -61,18 +57,12 @@ public class CCWTabActivity extends TabActivity implements OnCheckedChangeListen
 		localTabHost.addTab(buildTabSpec(TAB_TAG_INFO, R.string.main_my_info, R.drawable.icon_2_n, mInfoIntent));
 		localTabHost.addTab(buildTabSpec(TAB_TAG_NEWS, R.string.main_news, R.drawable.icon_3_n, mNewsIntent));
 	}
-	/**
-	 * 构建TabHost的Tab页
-	 * @param tag 标记
-	 * @param resLabel 标签
-	 * @param resIcon 图标
-	 * @param content 该tab展示的内容
-	 * @return 一个tab
-	 */
+	
 	private TabHost.TabSpec buildTabSpec(String tag, int resLabel, int resIcon,final Intent content) {
 		return this.mTabHost.newTabSpec(tag).setIndicator(getString(resLabel),
 				getResources().getDrawable(resIcon)).setContent(content);
 	} 
+	
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch(checkedId){

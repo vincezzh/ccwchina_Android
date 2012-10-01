@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Window;
 
 import com.ccwchina.R;
 import com.google.android.maps.GeoPoint;
@@ -29,6 +30,7 @@ public class CCWMapActivity extends MapActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map);
         
         LocationManager locationManager;

@@ -13,12 +13,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ccwchina.R;
+import com.ccwchina.common.CCWChinaConst;
 
 public class CourseDetailActivity extends Activity {
 	private ImageView coursePicture;
@@ -31,6 +33,7 @@ public class CourseDetailActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.course_detail);
 		
 		String courseNameString = getIntent().getStringExtra("_courseName");
@@ -87,7 +90,7 @@ public class CourseDetailActivity extends Activity {
 	
 	private boolean sendDownloadPictureRequest() {
 		try {
-			URL url = new URL(coursePicturePathString);
+			URL url = new URL(CCWChinaConst.WEBSITE_CONTEXT + coursePicturePathString);
 			InputStream inputStream = url.openStream();
 			courseImage = BitmapFactory.decodeStream(inputStream);
 			return true;

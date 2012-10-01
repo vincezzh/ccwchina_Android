@@ -3,6 +3,7 @@ package com.ccwchina;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,6 +25,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -43,6 +45,7 @@ public class LoginActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login);
 		
 		SharedPreferences sharedata = getSharedPreferences(CCWChinaConst.RMEMEBER_ME_KEY, 0);  
@@ -127,6 +130,7 @@ public class LoginActivity extends Activity {
 	}
 	
 	private boolean sendSignInRequest() {
+		message = null;
 		boolean isSuccessful = false;
 		try {
 			String urlParams = setupAndCheckParams();
@@ -148,7 +152,7 @@ public class LoginActivity extends Activity {
 		return isSuccessful;
 	}
 	
-	private String setupAndCheckParams() {
+	private String setupAndCheckParams() throws Exception {
 		String usernameParam = ((EditText)findViewById(R.id.username)).getText().toString();
 		String passwordParam = ((EditText)findViewById(R.id.password)).getText().toString();
 		boolean rememberIsChecked = ((CheckBox)findViewById(R.id.remember)).isChecked();
@@ -167,8 +171,8 @@ public class LoginActivity extends Activity {
 	    }
 		
 		StringBuffer urlParams = new StringBuffer();
-		urlParams.append("username=" + usernameParam);
-		urlParams.append("&password=" + passwordParam);
+		urlParams.append("username=" + URLEncoder.encode(usernameParam, "UTF-8"));
+		urlParams.append("&password=" + URLEncoder.encode(passwordParam, "UTF-8"));
 		return urlParams.toString();
 	}
 	

@@ -3,6 +3,7 @@ package com.ccwchina.calendar;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,8 +24,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +51,7 @@ public class OrderActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.order);
 
 		cc = (CourseCalendar)getIntent().getSerializableExtra("_CourseCalendar");
@@ -186,6 +190,7 @@ public class OrderActivity extends Activity {
 	}
 	
 	private boolean sendOrderRequest() {
+		message = null;
 		boolean isSuccessful = false;
 		try {
 			String urlParams = setupAndCheckParams();
@@ -207,7 +212,7 @@ public class OrderActivity extends Activity {
 		return isSuccessful;
 	}
 	
-	private String setupAndCheckParams() {
+	private String setupAndCheckParams() throws Exception {
 		String usernameParam = user.getUsername();
 		Integer peopleNumParam = 1;
 		try {
@@ -245,15 +250,15 @@ public class OrderActivity extends Activity {
 	    }
 		
 		StringBuffer urlParams = new StringBuffer();
-		urlParams.append("username=" + usernameParam);
+		urlParams.append("username=" + URLEncoder.encode(usernameParam, "UTF-8"));
 		urlParams.append("&order.totalPeopleNumber=" + peopleNumParam);
-		urlParams.append("&courseCalendarId=" + courseCalendarIdParam);
+		urlParams.append("&courseCalendarId=" + URLEncoder.encode(courseCalendarIdParam, "UTF-8"));
 		urlParams.append("&pricePerPerson=" + pricePerPersonParam);
 		urlParams.append("&order.orderbasic.peopletitle.peopleTitleId=" + peopleTitleIdParam);
-		urlParams.append("&order.orderbasic.contactPerson=" + contactPersonParam);
-		urlParams.append("&order.orderbasic.cellphone=" + cellphoneParam);
-		urlParams.append("&order.orderbasic.email=" + emailParam);
-		urlParams.append("&order.flag=" + flagParam);
+		urlParams.append("&order.orderbasic.contactPerson=" + URLEncoder.encode(contactPersonParam, "UTF-8"));
+		urlParams.append("&order.orderbasic.cellphone=" + URLEncoder.encode(cellphoneParam, "UTF-8"));
+		urlParams.append("&order.orderbasic.email=" + URLEncoder.encode(emailParam, "UTF-8"));
+		urlParams.append("&order.flag=" + URLEncoder.encode(flagParam, "UTF-8"));
 		return urlParams.toString();
 	}
 	

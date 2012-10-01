@@ -3,6 +3,7 @@ package com.ccwchina.calendar;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,6 @@ public class CCWCalendarActivity extends Activity{
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
 	private Handler handler;
 	private boolean refreshCalendar;
-	private String websiteContext;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -490,9 +490,11 @@ public class CCWCalendarActivity extends Activity{
 			String currentday = sdf.format(calSelected.getTime());
 			List<CourseCalendar> ccList = Calendar_Source.get(currentday);
 			if(ccList == null || ccList.size() == 0) {
+				arrange_layout.removeAllViews();
 				arrange_layout.addView(arrange_text);
 				arrange_text.setText("");
 			}else {
+				arrange_layout.removeAllViews();
 				for(final CourseCalendar cc : ccList) {
 					TextView tv = new TextView(this);
 					tv.setTextColor(Color.parseColor(cc.getFontColor()));
@@ -572,6 +574,27 @@ public class CCWCalendarActivity extends Activity{
 	            case 1:
 	            	refreshCalendar = true;
 	            	updateCalendar();
+	            	Date today = new Date();
+	            	if(Calendar_Source.get(sdf.format(today)) != null) {
+	            		arrange_layout.removeAllViews();
+		            	for(final CourseCalendar cc : Calendar_Source.get(sdf.format(today))) {
+							TextView tv = new TextView(CCWCalendarActivity.this);
+							tv.setTextColor(Color.parseColor(cc.getFontColor()));
+							tv.setBackgroundColor(Color.parseColor(cc.getBackgroundColor()));
+							tv.setTextSize(18);
+							tv.setText("[" + cc.getClassTimeName() + "] " + cc.getCourseBranchTypeName());
+							arrange_layout.addView(tv);
+							tv.setOnClickListener(new OnClickListener() {
+								public void onClick(View v) {
+									Intent intent = new Intent(CCWCalendarActivity.this.getParent(), OrderActivity.class);
+									Bundle bundle = new Bundle();
+									bundle.putSerializable("_CourseCalendar", cc);
+							        intent.putExtras(bundle);
+									startActivity(intent);
+								}
+							});
+						}
+	            	}
 	                break;
 	            }
 			}
@@ -581,7 +604,7 @@ public class CCWCalendarActivity extends Activity{
 			@Override
 			public void run() {
 				try {
-					Calendar_Source = CourseCalendarProcessor.getAMonthCourseCalendars(websiteContext, startDate, endDate);
+					Calendar_Source = CourseCalendarProcessor.getAMonthCourseCalendars(startDate, endDate);
 	                
 	                Message msg = new Message();
 	                msg.what = 1;

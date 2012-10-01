@@ -3,6 +3,7 @@ package com.ccwchina;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,6 +23,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,7 @@ public class RetrievePasswordActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.retrieve_password);
 		
 		Button cancel = (Button)findViewById(R.id.cancel);
@@ -93,6 +96,7 @@ public class RetrievePasswordActivity extends Activity {
 	}
 	
 	private boolean sendRetrievePasswordRequest() {
+		message = null;
 		boolean isSuccessful = false;
 		try {
 			String urlParams = setupAndCheckParams();
@@ -114,14 +118,13 @@ public class RetrievePasswordActivity extends Activity {
 		return isSuccessful;
 	}
 	
-	private String setupAndCheckParams() {
+	private String setupAndCheckParams() throws Exception {
 		String usernameParam = ((EditText)findViewById(R.id.username)).getText().toString();
 		if(usernameParam.length() == 0) {
-			message = "Please input username.";
+			message = "Please enter username.";
 	    }
-		//Todo Check input logic
 		StringBuffer urlParams = new StringBuffer();
-		urlParams.append("username=" + usernameParam);
+		urlParams.append("username=" + URLEncoder.encode(usernameParam, "UTF-8"));
 		return urlParams.toString();
 	}
 	

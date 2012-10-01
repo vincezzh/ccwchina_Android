@@ -3,8 +3,11 @@ package com.ccwchina;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,6 +26,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +44,7 @@ public class SignUpActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.sign_up);
 		
 		Button cancel = (Button)findViewById(R.id.cancel);
@@ -99,6 +104,7 @@ public class SignUpActivity extends Activity {
 	}
 	
 	private boolean sendSignUpRequest() {
+		message = null;
 		boolean isSuccessful = false;
 		try {
 			String urlParams = setupAndCheckParams();
@@ -120,18 +126,30 @@ public class SignUpActivity extends Activity {
 		return isSuccessful;
 	}
 	
-	private String setupAndCheckParams() {
+	private String setupAndCheckParams() throws Exception {
 		String usernameParam = ((EditText)findViewById(R.id.username)).getText().toString();
 		String passwordParam = ((EditText)findViewById(R.id.password)).getText().toString();
 		String confirmPasswordParam = ((EditText)findViewById(R.id.confirmPassword)).getText().toString();
 		String emailParam = ((EditText)findViewById(R.id.email)).getText().toString();
 		
-		//Todo Check input logic
+		if(usernameParam.length() == 0 || passwordParam.length() == 0 || emailParam.length() == 0) {
+			message = "Please fill all fields.";
+		}else if(usernameParam.length() < 6 || usernameParam.length() > 20) {
+			message = "The length of username should be from 6 to 20";
+		}else if(passwordParam.length() < 6 || passwordParam.length() > 20) {
+			message = "The length of password should be from 6 to 20";
+		}else if(!isValidInput(usernameParam)) {
+			message = "Please input letters, numbers, -, _, . or @ in Username";
+		}else if(!isValidInput(passwordParam)) {
+			message = "Please input letters, numbers, -, _, . or @ in Password";
+		}else if(!passwordParam.equals(confirmPasswordParam)) {
+			message = "Password and Confirm password are not same.";
+		}
 		
 		StringBuffer urlParams = new StringBuffer();
-		urlParams.append("user.userId=" + usernameParam);
-		urlParams.append("&user.password=" + passwordParam);
-		urlParams.append("&user.email=" + emailParam);
+		urlParams.append("user.userId=" + URLEncoder.encode(usernameParam, "UTF-8"));
+		urlParams.append("&user.password=" + URLEncoder.encode(passwordParam, "UTF-8"));
+		urlParams.append("&user.email=" + URLEncoder.encode(emailParam, "UTF-8"));
 		return urlParams.toString();
 	}
 	
@@ -168,5 +186,14 @@ public class SignUpActivity extends Activity {
 					finish();
 			}
 		}).show();
+	}
+	
+	private boolean isValidInput(String input) {
+		boolean isValid = false;
+		String regEx = "^[a-zA-Z0-9_@\\.\\-]*$";
+		Pattern pattern = Pattern.compile(regEx); 
+        Matcher matcher = pattern.matcher(input);
+        isValid = matcher.matches();
+        return isValid;
 	}
 }

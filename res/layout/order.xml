@@ -15,8 +15,11 @@
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:layout_marginTop="10dp"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:gravity="center"
+            android:singleLine="true" 
+			android:ellipsize="marquee" 
+			android:marqueeRepeatLimit="marquee_forever"
             android:text="" />
 
         <Button
@@ -104,6 +107,9 @@
         android:layout_marginTop="130dp"
         android:textColor="#61B6DD"
         android:textSize="18dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
         android:text="" />
     
     <TextView
@@ -114,6 +120,9 @@
         android:layout_marginTop="155dp"
         android:textColor="#61B6DD"
         android:textSize="18dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
         android:text="" />
     
     <TextView
@@ -124,6 +133,9 @@
         android:layout_marginTop="180dp"
         android:textColor="#61B6DD"
         android:textSize="18dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
         android:text="" />
     
     <RadioGroup
@@ -191,7 +203,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="65dp"
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="320dp"
         android:textColor="#A4C41B"
         android:text="E-mail" />
 
@@ -200,7 +212,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="310dp"
         android:ems="10"
         android:inputType="textEmailAddress"
 		android:text="" >
@@ -211,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="370dp"
         android:textColor="#A4C41B"
         android:text="Cell No." />
 
@@ -220,7 +232,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="360dp"
         android:ems="10"
         android:inputType="phone"
 		android:text="" >
@@ -231,7 +243,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="420dp"
         android:textColor="#A4C41B"
         android:text="People Number" />
 
@@ -240,7 +252,7 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="410dp"
         android:ems="10"
         android:inputType="number"
 		android:text="1" >
@@ -251,7 +263,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="170dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="420dp"
         android:background="#EB6D83"
         android:text="150" />
     
@@ -260,7 +272,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="420dp"
         android:text="per/person" />
 
 </RelativeLayout>

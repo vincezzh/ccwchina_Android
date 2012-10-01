@@ -14,9 +14,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:gravity="center"
+            android:singleLine="true" 
+			android:ellipsize="marquee" 
+			android:marqueeRepeatLimit="marquee_forever"
+			android:background="#A4C41B"
             android:text="" />
 
         <Button

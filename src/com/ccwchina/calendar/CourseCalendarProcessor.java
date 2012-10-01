@@ -6,6 +6,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,24 +22,28 @@ import org.w3c.dom.NodeList;
 
 import com.ccwchina.bean.Course;
 import com.ccwchina.bean.CourseCalendar;
+import com.ccwchina.common.CCWChinaConst;
 
 public class CourseCalendarProcessor {
-	public static Map<String, List<CourseCalendar>> getAMonthCourseCalendars(String websiteContext, Calendar fromDate, Calendar toDate) throws Exception {
+	public static Map<String, List<CourseCalendar>> getAMonthCourseCalendars(Calendar fromDate, Calendar toDate) throws Exception {
 		Map<String, List<CourseCalendar>> dataSource = new HashMap<String, List<CourseCalendar>>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String fromDateString = sdf.format(fromDate.getTime());
 		String toDateString = sdf.format(toDate.getTime());
-//		URL url = new URL(websiteContext + "/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString);
-		URL url = new URL(websiteContext + "/ccwcalendar.xml");
+		URL url = new URL(CCWChinaConst.WEBSITE_CONTEXT + "/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString);
+		SimpleDateFormat testsdf = new SimpleDateFormat("HH-mm-ss");
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@=" + testsdf.format(new Date()));
 		InputStream inputStream = url.openStream();
-		ByteArrayBuffer baf = new ByteArrayBuffer(50);
+		ByteArrayBuffer baf = new ByteArrayBuffer(1024);
 		int current = 0;
 		while ((current = inputStream.read()) != -1) {
 			baf.append((byte) current);
 		}
 		String xml = EncodingUtils.getString(baf.toByteArray(), "UTF-8");
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@=" + testsdf.format(new Date()));
 		parseCourseCalendarXMl(xml, dataSource);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@=" + testsdf.format(new Date()));
 		return dataSource;
 	}
 	
