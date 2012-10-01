@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"
+        android:textColor="#EB6D83"
+        android:text="Username:" />
+    
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
+        android:text="vincezzh" />
+
+    <TextView
+        android:id="@+id/titleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:textSize="20dp"
+        android:text="Miss" />
+    
+    <TextView
+        android:id="@+id/firstname"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="70dp"
+        android:textSize="20dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
+        android:text="Vince" />
+    
+    <TextView
+        android:id="@+id/lastname"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="70dp"
+        android:textSize="20dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
+        android:text="Zhang" />
+    
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:textSize="20dp"
+        android:textColor="#EB6D83"
+        android:text="email:" />
+    
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="100dp"
+        android:textSize="20dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
+        android:text="vincezzh@gmail.com" />
+    
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="130dp"
+        android:textSize="20dp"
+        android:textColor="#EB6D83"
+        android:text="Cell No." />
+    
+    <TextView
+        android:id="@+id/cellphone"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="130dp"
+        android:textSize="20dp"
+        android:singleLine="true" 
+		android:ellipsize="marquee" 
+		android:marqueeRepeatLimit="marquee_forever"
+        android:text="+1-416-839-7036" />
+    
+	<Button
+        android:id="@+id/myOrders"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+    	android:layout_marginTop="200dp"
+        android:text="My Orders" />
+	
+	<Button
+        android:id="@+id/updateInformation"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+    	android:layout_marginTop="270dp"
+        android:text="Update Information" />
+	
+	<Button
+        android:id="@+id/updatePassword"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+    	android:layout_marginTop="340dp"
+        android:text="Update Password" />
+	
+</RelativeLayout>
