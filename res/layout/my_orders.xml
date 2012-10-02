@@ -18,7 +18,7 @@
             android:textSize="20dp"
             android:gravity="center"
             android:background="#A4C41B"
-            android:text="My Orders" />
+            android:text="@string/mo_my_orders" />
 
         <Button
             android:id="@+id/cancel"
@@ -26,7 +26,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:textSize="12dp" 
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
     </RelativeLayout>
     

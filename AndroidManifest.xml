@@ -15,14 +15,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name=".CCWApplication" >
+        
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:name=".WelcomeActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name=".LoginActivity" />
         
         <activity 
         	android:name=".RetrievePasswordActivity" />
@@ -31,8 +34,7 @@
         	android:name=".SignUpActivity" />
         
         <activity 
-            android:name=".tab.CCWTabActivity"
-            android:label="@string/app_name" />
+            android:name=".tab.CCWTabActivity" />
         
         <activity
             android:name=".calendar.CCWCalendarActivity" />

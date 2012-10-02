@@ -18,7 +18,7 @@
             android:textSize="20dp"
             android:gravity="center"
             android:background="#A4C41B"
-            android:text="Sign Up" />
+            android:text="@string/su_sign_up" />
 
         <Button
             android:id="@+id/cancel"
@@ -26,7 +26,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:textSize="12dp" 
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
     </RelativeLayout>
     
@@ -37,7 +37,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
         android:textColor="#EB6D83"
-        android:text="Join the CCW community, its easy!" />
+        android:text="@string/su_title" />
     
     <TextView
         android:id="@+id/textView5"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="100dp"
-        android:text="Username" />
+        android:text="@string/su_username" />
 
     <EditText
         android:id="@+id/username"
@@ -54,8 +54,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="90dp"
         android:ems="10"
-        android:inputType="text"
-		android:text="" >
+        android:inputType="text" >
         <requestFocus />
     </EditText>
     
@@ -65,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="150dp"
-        android:text="Password" />
+        android:text="@string/su_password" />
 
     <EditText
         android:id="@+id/password"
@@ -74,8 +73,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="140dp"
         android:ems="10"
-        android:inputType="textPassword"
-		android:text="" >
+        android:inputType="textPassword" >
     </EditText>
     
     <TextView
@@ -84,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="200dp"
-        android:text="Confirm Psw" />
+        android:text="@string/su_confirm_password" />
 
     <EditText
         android:id="@+id/confirmPassword"
@@ -93,8 +91,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="190dp"
         android:ems="10"
-        android:inputType="textPassword"
-		android:text="" >
+        android:inputType="textPassword" >
     </EditText>
     
     <TextView
@@ -103,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="250dp"
-        android:text="e-mail" />
+        android:text="@string/su_email" />
 
     <EditText
         android:id="@+id/email"
@@ -112,8 +109,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="240dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-		android:text="" >
+        android:inputType="textEmailAddress" >
     </EditText>
     
 	<Button
@@ -122,6 +118,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
     	android:layout_marginTop="300dp"
-        android:text="Sign Up For CCW!" />
+        android:text="@string/su_sign_up_for_ccw" />
 	
 </RelativeLayout>

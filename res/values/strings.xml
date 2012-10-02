@@ -1,12 +1,88 @@
 <resources>
 
     <string name="app_name">CCWChina</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_login">CCWChina</string>
-
-    <string name="sign_in">Sign In</string>
+    
+    <!-- Common -->
+	<string name="cancel">Cancel</string>
+	<string name="save">Save</string>
+	
+	<!-- course_detail.xml -->
+	<string name="cd_course_picture">Course Picture</string>
+	
+	<!-- information.xml -->
+	<string name="info_update_information">Update Information</string>
+	<string name="info_mr">Mr.</string>
+	<string name="info_ms">Ms.</string>
+	<string name="info_mrs">Mrs.</string>
+	<string name="info_miss">Miss</string>
+	<string name="info_first_name">First Name</string>
+	<string name="info_last_name">Last Name</string>
+	<string name="info_email">EMail</string>
+	<string name="info_cellphone">Cellphone</string>
+	
+	<!-- login.xml -->
+	<string name="lo_ccw_logo">CCW Logo</string>
+	<string name="lo_username">Username</string>
+	<string name="lo_password">Password</string>
+	<string name="lo_remember_me">Remember Me</string>
+	<string name="lo_sign_up">Sign Up</string>
+    <string name="lo_sign_in">Sign In</string>
+    <string name="lo_forget_password">Forget Password? Click Me!</string>
+    
+    <!-- my_orders.xml -->
+    <string name="mo_my_orders">My Orders</string>
+    
+    <!-- order.xml -->
+    <string name="or_order">Order</string>
+    <string name="or_title1">I am interested in the following course</string>
+    <string name="or_title2">You offered in</string>
+    <string name="or_title3">at</string>
+    <string name="or_title4">on</string>
+    <string name="or_mr">Mr.</string>
+	<string name="or_ms">Ms.</string>
+	<string name="or_mrs">Mrs.</string>
+	<string name="or_miss">Miss</string>
+    <string name="or_contact_person">Contact person</string>
+    <string name="or_email">EMail</string>
+    <string name="or_cellphone_number">Cell No.</string>
+    <string name="or_people_number">People Number</string>
+    <string name="or_default_number">1</string>
+    <string name="or_per_person">per/person</string>
+    
+    <!-- profile.xml -->
+    <string name="pr_username">Username:</string>
+    <string name="pr_email">EMail:</string>
+    <string name="pr_cellphone_number">Cell No.</string>
+    <string name="pr_my_orders">My Orders</string>
+    <string name="pr_update_information">Update Information</string>
+    <string name="pr_update_password">Update Password</string>
+    
+    <!-- retrieve_password.xml -->
+    <string name="rp_forget_password">Forget Password?</string>
+    <string name="rp_username">Username</string>
+    <string name="rp_get_password_back">Get Password Back</string>
+    
+    <!-- sign_up.xml -->
+    <string name="su_sign_up">Sign Up</string>
+    <string name="su_title">Join the CCW community, its easy!</string>
+    <string name="su_username">Username</string>
+    <string name="su_password">Password</string>
+    <string name="su_confirm_password">Confirm Psw</string>
+    <string name="su_email">EMail</string>
+    <string name="su_sign_up_for_ccw">Sign Up For CCW!</string>
+    
+    <!-- tab.xml -->
     <string name="main_home">Calendar</string>
     <string name="main_my_info">User</string>
     <string name="main_news">Kitchens</string>
+    
+    <!-- update_password.xml -->
+    <string name="up_forget_password">Update Password</string>
+    <string name="up_new_password">New Password</string>
+    <string name="up_confirm_password">Confirm Password</string>
+    
+    <!-- welcome.xml -->
+    <string name="we_welcome_to_ccwchina">Welcome to CCWChina</string>
+    
 </resources>

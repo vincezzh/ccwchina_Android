@@ -11,7 +11,7 @@
         android:layout_marginTop="40dp"
         android:textSize="20dp"
         android:textColor="#EB6D83"
-        android:text="Username:" />
+        android:text="@string/pr_username" />
     
     <TextView
         android:id="@+id/username"
@@ -22,8 +22,7 @@
         android:textSize="20dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="vincezzh" />
+		android:marqueeRepeatLimit="marquee_forever" />
 
     <TextView
         android:id="@+id/titleName"
@@ -31,8 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="70dp"
-        android:textSize="20dp"
-        android:text="Miss" />
+        android:textSize="20dp" />
     
     <TextView
         android:id="@+id/firstname"
@@ -43,8 +41,7 @@
         android:textSize="20dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="Vince" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
     <TextView
         android:id="@+id/lastname"
@@ -55,8 +52,7 @@
         android:textSize="20dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="Zhang" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
     <TextView
         android:id="@+id/textView2"
@@ -66,7 +62,7 @@
         android:layout_marginTop="100dp"
         android:textSize="20dp"
         android:textColor="#EB6D83"
-        android:text="email:" />
+        android:text="@string/pr_email" />
     
     <TextView
         android:id="@+id/email"
@@ -77,8 +73,7 @@
         android:textSize="20dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="vincezzh@gmail.com" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
     <TextView
         android:id="@+id/textView3"
@@ -88,7 +83,7 @@
         android:layout_marginTop="130dp"
         android:textSize="20dp"
         android:textColor="#EB6D83"
-        android:text="Cell No." />
+        android:text="@string/pr_cellphone_number" />
     
     <TextView
         android:id="@+id/cellphone"
@@ -99,8 +94,7 @@
         android:textSize="20dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="+1-416-839-7036" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
 	<Button
         android:id="@+id/myOrders"
@@ -108,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
     	android:layout_marginTop="200dp"
-        android:text="My Orders" />
+        android:text="@string/pr_my_orders" />
 	
 	<Button
         android:id="@+id/updateInformation"
@@ -116,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
     	android:layout_marginTop="270dp"
-        android:text="Update Information" />
+        android:text="@string/pr_update_information" />
 	
 	<Button
         android:id="@+id/updatePassword"
@@ -124,6 +118,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
     	android:layout_marginTop="340dp"
-        android:text="Update Password" />
+        android:text="@string/pr_update_password" />
 	
 </RelativeLayout>

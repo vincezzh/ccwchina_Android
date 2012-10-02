@@ -19,8 +19,7 @@
             android:gravity="center"
             android:singleLine="true" 
 			android:ellipsize="marquee" 
-			android:marqueeRepeatLimit="marquee_forever"
-            android:text="" />
+			android:marqueeRepeatLimit="marquee_forever" />
 
         <Button
             android:id="@+id/cancel"
@@ -28,7 +27,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:textSize="12dp" 
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/order"
@@ -37,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="right" 
             android:textSize="12dp"
-            android:text="Order" />
+            android:text="@string/or_order" />
     </RelativeLayout>
 
     <TextView
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
-        android:text="I am interested in the following course" />
+        android:text="@string/or_title1" />
     
     <TextView
         android:id="@+id/textView2"
@@ -54,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="80dp"
-        android:text="You offered in" />
+        android:text="@string/or_title2" />
     
     <TextView
         android:id="@+id/courseLocationName"
@@ -62,8 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="80dp"
-     	android:background="#EB6D83"
-        android:text="Shanghai Puxi" />
+     	android:background="#EB6D83" />
     
     <TextView
         android:id="@+id/textView3"
@@ -71,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="100dp"
-        android:text="at" />
+        android:text="@string/or_title3" />
     
     <TextView
         android:id="@+id/classTimeName"
@@ -79,8 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="100dp"
-        android:background="#EB6D83"
-        android:text="10:00-12:00" />
+        android:background="#EB6D83" />
     
     <TextView
         android:id="@+id/textView4"
@@ -88,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="105dp"
         android:layout_marginTop="100dp"
-        android:text="on" />
+        android:text="@string/or_title4" />
     
     <TextView
         android:id="@+id/classDate"
@@ -96,8 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="125dp"
         android:layout_marginTop="100dp"
-        android:background="#EB6D83"
-        android:text="2012-09-27" />
+        android:background="#EB6D83" />
     
     <TextView
         android:id="@+id/course1"
@@ -109,8 +105,7 @@
         android:textSize="18dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
     <TextView
         android:id="@+id/course2"
@@ -122,8 +117,7 @@
         android:textSize="18dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
     <TextView
         android:id="@+id/course3"
@@ -135,8 +129,7 @@
         android:textSize="18dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="" />
+		android:marqueeRepeatLimit="marquee_forever" />
     
     <RadioGroup
         android:id="@+id/titleGroup"
@@ -152,28 +145,28 @@
             android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mr." >
+            android:text="@string/or_mr" >
         </RadioButton>
 
         <RadioButton
             android:id="@+id/title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ms." >
+            android:text="@string/or_ms" >
         </RadioButton>
 
         <RadioButton
             android:id="@+id/title3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mrs." >
+            android:text="@string/or_mrs" >
         </RadioButton>
         
         <RadioButton
             android:id="@+id/title4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Miss" >
+            android:text="@string/or_miss" >
         </RadioButton>
     </RadioGroup>
     
@@ -184,7 +177,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="270dp"
         android:textColor="#A4C41B"
-        android:text="Contact person" />
+        android:text="@string/or_contact_person" />
 
     <EditText
         android:id="@+id/contactPerson"
@@ -193,8 +186,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="260dp"
         android:ems="10"
-        android:inputType="textPersonName"
-		android:text="" >
+        android:inputType="textPersonName" >
         <requestFocus />
     </EditText>
     
@@ -205,7 +197,7 @@
         android:layout_marginLeft="65dp"
         android:layout_marginTop="320dp"
         android:textColor="#A4C41B"
-        android:text="E-mail" />
+        android:text="@string/or_email" />
 
     <EditText
         android:id="@+id/email"
@@ -214,8 +206,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="310dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-		android:text="" >
+        android:inputType="textEmailAddress" >
     </EditText>
     
     <TextView
@@ -225,7 +216,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="370dp"
         android:textColor="#A4C41B"
-        android:text="Cell No." />
+        android:text="@string/or_cellphone_number" />
 
     <EditText
         android:id="@+id/cellNumber"
@@ -234,8 +225,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginTop="360dp"
         android:ems="10"
-        android:inputType="phone"
-		android:text="" >
+        android:inputType="phone" >
     </EditText>
     
     <TextView
@@ -245,7 +235,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="420dp"
         android:textColor="#A4C41B"
-        android:text="People Number" />
+        android:text="@string/or_people_number" />
 
     <EditText
         android:id="@+id/peopleNumber"
@@ -255,7 +245,7 @@
         android:layout_marginTop="410dp"
         android:ems="10"
         android:inputType="number"
-		android:text="1" >
+		android:text="@string/or_default_number" >
     </EditText>
     
     <TextView
@@ -264,8 +254,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="170dp"
         android:layout_marginTop="420dp"
-        android:background="#EB6D83"
-        android:text="150" />
+        android:background="#EB6D83" />
     
     <TextView
         android:id="@+id/textView9"
@@ -273,6 +262,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="420dp"
-        android:text="per/person" />
+        android:text="@string/or_per_person" />
 
 </RelativeLayout>

@@ -18,7 +18,7 @@
             android:textSize="20dp"
             android:gravity="center"
             android:background="#A4C41B"
-            android:text="Update Information" />
+            android:text="@string/info_update_information" />
 
         <Button
             android:id="@+id/cancel"
@@ -26,7 +26,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:textSize="12dp" 
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
     </RelativeLayout>
     
@@ -38,8 +38,7 @@
         android:layout_marginTop="70dp"
         android:singleLine="true" 
 		android:ellipsize="marquee" 
-		android:marqueeRepeatLimit="marquee_forever"
-        android:text="vincezzh" />
+		android:marqueeRepeatLimit="marquee_forever" />
 
     <RadioGroup
         android:id="@+id/titleGroup"
@@ -55,28 +54,28 @@
             android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mr." >
+            android:text="@string/info_mr" >
         </RadioButton>
 
         <RadioButton
             android:id="@+id/title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ms." >
+            android:text="@string/info_ms" >
         </RadioButton>
 
         <RadioButton
             android:id="@+id/title3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mrs." >
+            android:text="@string/info_mrs" >
         </RadioButton>
         
         <RadioButton
             android:id="@+id/title4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Miss" >
+            android:text="@string/info_miss" >
         </RadioButton>
     </RadioGroup>
     
@@ -86,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="160dp"
-        android:text="First Name" />
+        android:text="@string/info_first_name" />
 
     <EditText
         android:id="@+id/firstname"
@@ -95,8 +94,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="150dp"
         android:ems="10"
-        android:inputType="textPersonName"
-		android:text="" >
+        android:inputType="textPersonName" >
         <requestFocus />
     </EditText>
     
@@ -106,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="210dp"
-        android:text="Last Name" />
+        android:text="@string/info_last_name" />
 
     <EditText
         android:id="@+id/lastname"
@@ -115,8 +113,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="200dp"
         android:ems="10"
-        android:inputType="textPersonName"
-		android:text="" >
+        android:inputType="textPersonName" >
     </EditText>
     
     <TextView
@@ -125,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="260dp"
-        android:text="email" />
+        android:text="@string/info_email" />
 
     <EditText
         android:id="@+id/email"
@@ -134,8 +131,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="250dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-		android:text="" >
+        android:inputType="textEmailAddress" >
     </EditText>
     
     <TextView
@@ -144,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="310dp"
-        android:text="cellphone" />
+        android:text="@string/info_cellphone" />
 
     <EditText
         android:id="@+id/cellphone"
@@ -153,8 +149,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="300dp"
         android:ems="10"
-        android:inputType="phone"
-		android:text="" >
+        android:inputType="phone" >
     </EditText>
     
 	<Button
@@ -163,6 +158,6 @@
         android:layout_height="wrap_content"
     	android:layout_marginTop="360dp"
     	android:layout_centerHorizontal="true"
-        android:text="Save" />
+        android:text="@string/save" />
 	
 </RelativeLayout>
