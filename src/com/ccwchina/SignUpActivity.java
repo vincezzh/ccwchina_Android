@@ -19,6 +19,7 @@ import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class SignUpActivity extends Activity {
 	private User user;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,11 @@ public class SignUpActivity extends Activity {
 	}
 	
 	private void signUp() {
+		waitingDialog = ProgressDialog.show(this, null, "Signing up...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	((CCWApplication) SignUpActivity.this.getApplication()).setUser(user);

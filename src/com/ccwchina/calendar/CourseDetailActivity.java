@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class CourseDetailActivity extends Activity {
 	private Bitmap courseImage;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,11 @@ public class CourseDetailActivity extends Activity {
 	}
 	
 	private void downloadPicture() {
+		waitingDialog = ProgressDialog.show(this, null, "Loading...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	coursePicture.setImageBitmap(courseImage);

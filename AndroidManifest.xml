@@ -55,6 +55,9 @@
         <activity 
         	android:name=".information.UpdatePasswordActivity" />
         
+        <activity 
+        	android:name=".information.MyOrderActivity" />
+        
          <uses-library android:name="com.google.android.maps"/>
     </application>
 

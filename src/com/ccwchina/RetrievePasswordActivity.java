@@ -17,6 +17,7 @@ import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,7 @@ public class RetrievePasswordActivity extends Activity {
 	private String message;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +65,11 @@ public class RetrievePasswordActivity extends Activity {
 	}
 	
 	private void retrievePassword() {
+		waitingDialog = ProgressDialog.show(this, null, "Retrieving Password...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	showAlertDialog("Retrieve Password", message, android.R.drawable.ic_dialog_info, true);

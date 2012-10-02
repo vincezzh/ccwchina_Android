@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -80,6 +81,7 @@ public class CCWCalendarActivity extends Activity{
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
 	private Handler handler;
 	private boolean refreshCalendar;
+	private ProgressDialog waitingDialog = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -567,9 +569,11 @@ public class CCWCalendarActivity extends Activity{
 	
 	// CCW Logic
 	private void getCCWCalendar() {
+		waitingDialog = ProgressDialog.show(this, null, "Loading Calendar...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	refreshCalendar = true;

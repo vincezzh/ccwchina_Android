@@ -17,6 +17,7 @@ import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,8 +26,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,6 +42,7 @@ public class LoginActivity extends Activity {
 	private User user;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -95,9 +97,11 @@ public class LoginActivity extends Activity {
 	}
 	
 	private void signIn() {
+		waitingDialog = ProgressDialog.show(this, null, "Signing in...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	((CCWApplication) LoginActivity.this.getApplication()).setUser(user);

@@ -17,6 +17,7 @@ import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,6 +42,7 @@ public class UpdateInformationActivity extends Activity {
 	private User user;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,21 +96,17 @@ public class UpdateInformationActivity extends Activity {
 	}
 	
 	@Override
-	protected void onResume() {
-		super.onResume();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-	}
-	
-	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 	
 	private void saveInformation() {
+		waitingDialog = ProgressDialog.show(this, null, "Updating Information...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	((CCWApplication) UpdateInformationActivity.this.getApplication()).setUser(user);

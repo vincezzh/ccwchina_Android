@@ -75,8 +75,8 @@ public class CCWInfoActivity extends Activity {
 	}
 	
 	private void showMyOrders() {
-//		Intent intent = new Intent(CCWInfoActivity.this, MyOrdersActivity.class);
-//		startActivity(intent);
+		Intent intent = new Intent(CCWInfoActivity.this, MyOrderActivity.class);
+		startActivity(intent);
 	}
 	
 	private void updateInformation() {

@@ -19,6 +19,7 @@ import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +41,7 @@ public class UpdatePasswordActivity extends Activity {
 	private User user;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +74,11 @@ public class UpdatePasswordActivity extends Activity {
 	}
 	
 	private void savePassword() {
+		waitingDialog = ProgressDialog.show(this, null, "Upading Password...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	showAlertDialog("Update Password", message, android.R.drawable.ic_dialog_info, true);

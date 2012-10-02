@@ -18,17 +18,17 @@ import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -47,6 +47,7 @@ public class OrderActivity extends Activity {
 	private User user;
 	private Handler handler;
 	private ExecutorService executorService = Executors.newFixedThreadPool(10);
+	private ProgressDialog waitingDialog = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -157,9 +158,11 @@ public class OrderActivity extends Activity {
 	}
 	
 	private void placeOrder() {
+		waitingDialog = ProgressDialog.show(this, null, "Placing Order...");
 		handler = new Handler(){
 			@Override
 			public void handleMessage(Message msg) {
+				waitingDialog.dismiss();
 	            switch(msg.what){
 	            case 1:
 	            	showAlertDialog("Place Order", message, android.R.drawable.ic_dialog_info, true);
