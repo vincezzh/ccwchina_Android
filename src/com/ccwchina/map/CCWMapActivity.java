@@ -1,5 +1,6 @@
 package com.ccwchina.map;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -18,10 +19,10 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.ccwchina.LoginActivity;
 import com.ccwchina.R;
 import com.ccwchina.common.CCWChinaConst;
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
@@ -35,6 +36,8 @@ public class CCWMapActivity extends MapActivity {
 	LocationManager locationManager;
 	MyLocationOverlay myLocation;
     MapController controller;
+    Drawable myDrawable;
+	MyMapOverlay myOverlay;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,13 @@ public class CCWMapActivity extends MapActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.map);
         
-        LocationManager locationManager;
+        mapView = (MapView) findViewById(R.id.mapview);
+        mapView.setBuiltInZoomControls(true);
+        
+        myLocation = new MyLocationOverlay(this, mapView);
+        myLocation.enableMyLocation();
+        controller = mapView.getController();
+        
         String seviceName = Context.LOCATION_SERVICE;
         locationManager = (LocationManager)getSystemService(seviceName);
         
@@ -53,17 +62,11 @@ public class CCWMapActivity extends MapActivity {
         criteria.setCostAllowed(true);
         criteria.setPowerRequirement(Criteria.POWER_LOW);
         
-        String provider = locationManager.getBestProvider(criteria,true);
+        String provider = locationManager.getBestProvider(criteria, true);
         location = locationManager.getLastKnownLocation(provider);
-        updateWithNewLocation(location);
+        myDrawable = this.getResources().getDrawable(R.drawable.ic_star);
+        UpdateMapView(location);
         locationManager.requestLocationUpdates(provider, 2000, 10, locationListener);
-        
-        mapView = (MapView) findViewById(R.id.mapview);
-        mapView.setBuiltInZoomControls(true);
-        
-        myLocation = new MyLocationOverlay(this, mapView);
-        controller = mapView.getController();
-        myLocation.enableMyLocation();
         
         List<Overlay> mapOverlays = mapView.getOverlays();
         mapOverlays.add(myLocation);
@@ -133,32 +136,79 @@ public class CCWMapActivity extends MapActivity {
         return false;
     }
     
-    private final LocationListener locationListener = new LocationListener(){
-        public void onLocationChanged(String provider){
-        	updateWithNewLocation(location);
+    private final LocationListener locationListener = new LocationListener() {
+        public void onLocationChanged(String provider) {
+        	UpdateMapView(location);
         }
-        public void onProviderDisabled(String provider){
-        	updateWithNewLocation(null);
+        public void onProviderDisabled(String provider) {
+        	
         }
-        public void onProviderEnavled(String probider){
+        public void onProviderEnavled(String probider) {
                 
         }
-        public void onStatusChanged(String provider,int status,Bundle extras){}
-            @Override
-            public void onLocationChanged(Location location) {
-                    // TODO Auto-generated method stub
-            }
-            @Override
-            public void onProviderEnabled(String provider) {
-                    // TODO Auto-generated method stub
-            }
+        public void onStatusChanged(String provider,int status,Bundle extras) {
+        	
+        }
+        @Override
+        public void onLocationChanged(Location location) {
+        
+        }
+        @Override
+        public void onProviderEnabled(String provider) {
+        
+        }
     };
     
-    private void updateWithNewLocation(Location location) {
-        if (location != null){
-            double lat = location.getLatitude();
-            double lng = location.getLongitude();
-            controller.animateTo(new GeoPoint((int)(lat*1E6),(int)(lng*1E6)));
-        }
+    private void UpdateMapView(Location location)
+    {
+    	if (location != null) {
+			Double lat = location.getLatitude() * 1E6;
+			Double lng = location.getLongitude() * 1E6;
+			GeoPoint point = new GeoPoint(lat.intValue(), lng.intValue());
+			controller.setCenter(point);
+			controller.setZoom(12);
+			
+			myOverlay = new MyMapOverlay(myDrawable);
+            myOverlay.setItem(point);
+            mapView.getOverlays().add(myOverlay);
+			
+			controller.animateTo(point);
+    	}
+    }
+    
+    class MyMapOverlay extends ItemizedOverlay<OverlayItem> {
+        private List<GeoPoint> mItems = new ArrayList<GeoPoint>(); 
+        
+        public MyMapOverlay(Drawable marker) {
+              super(boundCenterBottom(marker));
+        } 
+   
+        public void setItems(ArrayList<GeoPoint> items) {
+              mItems = items;
+              populate();
+        } 
+   
+        public void setItem(GeoPoint item) {
+              mItems.add(item);
+              populate();
+        } 
+   
+        @Override
+        protected OverlayItem createItem(int i) {
+             return new OverlayItem(mItems.get(i), null, null);
+        } 
+   
+        @Override
+        public int size() {
+             return mItems.size();
+        } 
+   
+//        @Override
+//        protected boolean onTap(int i) {
+//             Toast.makeText(CCWMapActivity.this,
+//             "Current Position：\n "+ myLocation.getLatitude() + ", "+myLocation.getLongitude(),
+//             Toast.LENGTH_SHORT).show();
+//             return true;
+//        }
     }
 }

@@ -1,12 +1,9 @@
 package com.ccwchina.calendar;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +11,12 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.http.util.ByteArrayBuffer;
-import org.apache.http.util.EncodingUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -31,19 +32,16 @@ public class CourseCalendarProcessor {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String fromDateString = sdf.format(fromDate.getTime());
 		String toDateString = sdf.format(toDate.getTime());
-		URL url = new URL(CCWChinaConst.WEBSITE_CONTEXT + "/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString);
-		SimpleDateFormat testsdf = new SimpleDateFormat("HH-mm-ss");
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@=" + testsdf.format(new Date()));
-		InputStream inputStream = url.openStream();
-		ByteArrayBuffer baf = new ByteArrayBuffer(1024);
-		int current = 0;
-		while ((current = inputStream.read()) != -1) {
-			baf.append((byte) current);
-		}
-		String xml = EncodingUtils.getString(baf.toByteArray(), "UTF-8");
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@=" + testsdf.format(new Date()));
-		parseCourseCalendarXMl(xml, dataSource);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@=" + testsdf.format(new Date()));
+		
+		String httpUrl = CCWChinaConst.WEBSITE_CONTEXT + "/mobile/calendar.htm?fromMonthDate=" + fromDateString + "&toMonthDate=" + toDateString;
+        HttpGet request = new HttpGet(httpUrl);
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpResponse response = httpClient.execute(request);
+        if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            String xml = EntityUtils.toString(response.getEntity());
+            parseCourseCalendarXMl(xml, dataSource);
+        }
+        
 		return dataSource;
 	}
 	

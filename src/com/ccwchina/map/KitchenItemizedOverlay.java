@@ -14,9 +14,9 @@ public class KitchenItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	private Context mContext;
 	
 	public KitchenItemizedOverlay(Drawable defaultMarker, Context context) {
-		  super(boundCenterBottom(defaultMarker));
-		  mContext = context;
-		}
+		super(boundCenterBottom(defaultMarker));
+		mContext = context;
+	}
 	
 	public void addOverlay(OverlayItem overlay) {
 	    mOverlays.add(overlay);
