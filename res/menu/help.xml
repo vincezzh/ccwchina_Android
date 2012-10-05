@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/reportErr"
+          android:title="@string/he_report_app_error" />
+    <item android:id="@+id/callCCW"
+          android:title="@string/he_call_ccw" />
+    <item android:id="@+id/sendEmail"
+          android:title="@string/he_send_ccw_an_email" />
+</menu>

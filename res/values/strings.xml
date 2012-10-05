@@ -85,4 +85,8 @@
     <!-- welcome.xml -->
     <string name="we_welcome_to_ccwchina">Welcome to CCWChina</string>
     
+    <!-- help.xml -->
+    <string name="he_report_app_error">Report App Error</string>
+    <string name="he_call_ccw">Call CCW</string>
+    <string name="he_send_ccw_an_email">Send CCW an email</string>
 </resources>
