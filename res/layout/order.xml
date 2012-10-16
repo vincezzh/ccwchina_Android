@@ -23,7 +23,7 @@
 
         <Button
             android:id="@+id/cancel"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:textSize="12dp" 
@@ -31,7 +31,7 @@
 
         <Button
             android:id="@+id/order"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="right" 
